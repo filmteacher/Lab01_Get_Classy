@@ -24,11 +24,11 @@ public class PersonGenerator
         int YOB = 0;
 
         do {
-            ID = SafeInput.getNonZeroLenString(in, "Enter the 6-digit ID: ");
-            FirstName = SafeInput.getNonZeroLenString(in, "Enter the first name: ");
-            LastName = SafeInput.getNonZeroLenString(in, "Enter the last name: ");
-            Title = SafeInput.getNonZeroLenString(in, "Enter the title: ");
-            YOB = SafeInput.getRangedInt(in, "Enter the 4-digit year of birth: ", 1000, 9999);
+            ID = SafeInput.getNonZeroLenString(in, "Enter the 6-digit ID");
+            FirstName = SafeInput.getNonZeroLenString(in, "Enter the first name");
+            LastName = SafeInput.getNonZeroLenString(in, "Enter the last name");
+            Title = SafeInput.getNonZeroLenString(in, "Enter the title");
+            YOB = SafeInput.getRangedInt(in, "Enter the 4-digit year of birth", 1000, 9999);
 
             personRec = ID + ", " + FirstName + ", " + LastName + ", " + Title + ", " + YOB;
             folks.add(personRec);
