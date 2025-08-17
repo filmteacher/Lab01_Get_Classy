@@ -1,4 +1,7 @@
-package PACKAGE_NAME;
+public class ProductReader
+{
+    public static void main(String[] args)
+    {
 
-public class ProductReader {
+    }
 }
