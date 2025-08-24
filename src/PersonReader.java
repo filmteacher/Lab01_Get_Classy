@@ -3,12 +3,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class PersonReader
 {
     public static void main(String[] args)
     {
+        ArrayList<Person> folks = new ArrayList<>();
+
         try
         {
             JFileChooser chooser = new JFileChooser();
@@ -38,6 +41,10 @@ public class PersonReader
                 {
                     line = inFile.nextLine();
                     String[] items = line.split(",");
+                    items[4] = items[4].trim();
+                    int YOB = Integer.parseInt(items[4]);
+                    Person personRec = new Person(items[0],items[1],items[2],items[3],YOB);
+                    folks.add(personRec);
                     System.out.printf("%-8s%-12s%-12s%-7s%-4s\n", items[0],items[1],items[2],items[3],items[4]);
                 }
 

@@ -38,6 +38,8 @@ public class ProductReader
                 {
                     line = inFile.nextLine();
                     String[] items = line.split(",");
+                    items[3] = items[3].trim();
+                    double cost = Double.parseDouble(items[3]);
                     System.out.printf("%-8s%-12s%-26s%-7s\n", items[0],items[1],items[2],items[3]);
                 }
 

@@ -5,35 +5,36 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class ProductWriter
 {
     public static void main(String[] args)
     {
-        ArrayList<String> products = new ArrayList<>();
-        Scanner in = new Scanner(System.in);
+        ArrayList<Product> products = new ArrayList<>();
         boolean done = false;
 
-        String productRec = "";
         String ID = "";
         String Name = "";
         String Desc = "";
         double Cost = 0;
 
+        // Create an instance of SafeInputObject
+        SafeInputObj SI = new SafeInputObj();
+
         do {
-            ID = SafeInput.getNonZeroLenString(in, "Enter the 6-digit ID");
-            Name = SafeInput.getNonZeroLenString(in, "Enter the product name");
-            Desc = SafeInput.getNonZeroLenString(in, "Enter the product description");
-            Cost = SafeInput.getDouble(in, "Enter the product cost");
-            productRec = ID + ", " + Name + ", " + Desc + ", " + Cost;
+            ID = SI.getNonZeroLenString("Enter the 6-digit ID");
+            Name = SI.getNonZeroLenString("Enter the product name");
+            Desc = SI.getNonZeroLenString("Enter the product description");
+            Cost = SI.getDouble("Enter the product cost");
+
+            Product productRec = new Product(ID, Name, Desc, Cost);
             products.add(productRec);
 
-            done = SafeInput.getYNConfirm(in, "Are you done?");
+            done = SI.getYNConfirm("Are you done?");
 
         } while(!done);
 
-        for (String p : products) {
+        for (Product p : products) {
             System.out.println(p);
         }
 
@@ -52,11 +53,9 @@ public class ProductWriter
 
             // Finally can write the file LOL!
 
-            for(String rec : products)
+            for(Product rec : products)
             {
-                writer.write(rec, 0, rec.length());  // stupid syntax for write rec
-                // 0 is where to start (1st char) the write
-                // rec. length() is how many chars to write (all)
+                writer.write(rec.toCSV());  // writer won't write the Product object unless we convert it to a string'
                 writer.newLine();  // adds the new line
 
             }

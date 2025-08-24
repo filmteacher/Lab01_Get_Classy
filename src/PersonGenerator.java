@@ -2,42 +2,39 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Scanner;
-
-import static java.nio.file.StandardOpenOption.CREATE;
 
 public class PersonGenerator
 {
     public static void main(String[] args)
     {
-        ArrayList<String> folks = new ArrayList<>();
-        Scanner in = new Scanner(System.in);
+        ArrayList<Person> folks = new ArrayList<>();
         boolean done = false;
 
-        String personRec = "";
         String ID = "";
         String FirstName = "";
         String LastName = "";
         String Title = "";
         int YOB = 0;
 
-        do {
-            ID = SafeInput.getNonZeroLenString(in, "Enter the 6-digit ID");
-            FirstName = SafeInput.getNonZeroLenString(in, "Enter the first name");
-            LastName = SafeInput.getNonZeroLenString(in, "Enter the last name");
-            Title = SafeInput.getNonZeroLenString(in, "Enter the title");
-            YOB = SafeInput.getRangedInt(in, "Enter the 4-digit year of birth", 1000, 9999);
+        // Create an instance of SafeInputObject
+        SafeInputObj SI = new SafeInputObj();
 
-            personRec = ID + ", " + FirstName + ", " + LastName + ", " + Title + ", " + YOB;
+        do {
+            ID = SI.getNonZeroLenString("Enter the 6-digit ID");
+            FirstName = SI.getNonZeroLenString("Enter the first name");
+            LastName = SI.getNonZeroLenString("Enter the last name");
+            Title = SI.getNonZeroLenString("Enter the title");
+            YOB =  SI.getRangedInt("Enter the 4-digit year of birth", 1000, 2010);
+
+            Person personRec = new Person(ID, FirstName, LastName, Title, YOB);
             folks.add(personRec);
 
-            done = SafeInput.getYNConfirm(in, "Are you done?");
+            done = SI.getYNConfirm("Are you done?");
 
         } while(!done);
 
-        for (String p : folks) {
+        for (Person p : folks) {
             System.out.println(p);
         }
 
@@ -56,11 +53,9 @@ public class PersonGenerator
 
             // Finally can write the file LOL!
 
-            for(String rec : folks)
+            for(Person rec : folks)
             {
-                writer.write(rec, 0, rec.length());  // stupid syntax for write rec
-                // 0 is where to start (1st char) the write
-                // rec. length() is how many chars to write (all)
+                writer.write(rec.toCSV());  // writer won't write the Person object unless we convert it to a string
                 writer.newLine();  // adds the new line
 
             }
