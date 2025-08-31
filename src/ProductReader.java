@@ -31,8 +31,8 @@ public class ProductReader
                 target = chooser.getSelectedFile().toPath();  // this is a File object not a String filename
                 inFile = new Scanner(target);
 
-                System.out.println("ID#      Name        Description               Cost");
-                System.out.println("=====================================================");
+                System.out.println("ID#         Name                    Description                                              Cost");
+                System.out.println("====================================================================================================");
 
                 while (inFile.hasNextLine())
                 {
@@ -40,7 +40,7 @@ public class ProductReader
                     String[] items = line.split(",");
                     items[3] = items[3].trim();
                     double cost = Double.parseDouble(items[3]);
-                    System.out.printf("%-8s%-12s%-26s%-7s\n", items[0],items[1],items[2],items[3]);
+                    System.out.printf("%-11s%-25s%-57s%-7s\n", items[0],items[1],items[2],items[3]);
                 }
 
                 inFile.close();

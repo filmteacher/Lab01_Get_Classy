@@ -34,8 +34,8 @@ public class PersonReader
                 target = chooser.getSelectedFile().toPath();  // this is a File object not a String filename
                 inFile = new Scanner(target);
 
-                System.out.println("ID#      FirstName   LastName    Title  YOB");
-                System.out.println("============================================");
+                System.out.println("ID#        FirstName   LastName   Title   YOB");
+                System.out.println("==============================================");
 
                 while (inFile.hasNextLine())
                 {
@@ -43,9 +43,9 @@ public class PersonReader
                     String[] items = line.split(",");
                     items[4] = items[4].trim();
                     int YOB = Integer.parseInt(items[4]);
-                    Person personRec = new Person(items[0],items[1],items[2],items[3],YOB);
+                    Person personRec = new Person(items[0],items[1],items[2], YOB);
                     folks.add(personRec);
-                    System.out.printf("%-8s%-12s%-12s%-7s%-4s\n", items[0],items[1],items[2],items[3],items[4]);
+                    System.out.printf("%-11s%-12s%-11s%-8s%-4s\n", items[0],items[1],items[2],items[3],items[4]);
                 }
 
                 inFile.close();

@@ -22,12 +22,11 @@ public class ProductWriter
         SafeInputObj SI = new SafeInputObj();
 
         do {
-            ID = SI.getNonZeroLenString("Enter the 6-digit ID");
             Name = SI.getNonZeroLenString("Enter the product name");
             Desc = SI.getNonZeroLenString("Enter the product description");
             Cost = SI.getDouble("Enter the product cost");
 
-            Product productRec = new Product(ID, Name, Desc, Cost);
+            Product productRec = new Product(Name, Desc, Cost);
             products.add(productRec);
 
             done = SI.getYNConfirm("Are you done?");

@@ -11,8 +11,7 @@ public class PersonGenerator
         ArrayList<Person> folks = new ArrayList<>();
         boolean done = false;
 
-        String ID = "";
-        String FirstName = "";
+String FirstName = "";
         String LastName = "";
         String Title = "";
         int YOB = 0;
@@ -21,13 +20,13 @@ public class PersonGenerator
         SafeInputObj SI = new SafeInputObj();
 
         do {
-            ID = SI.getNonZeroLenString("Enter the 6-digit ID");
+            //ID = SI.getNonZeroLenString("Enter the 6-digit ID");
             FirstName = SI.getNonZeroLenString("Enter the first name");
             LastName = SI.getNonZeroLenString("Enter the last name");
             Title = SI.getNonZeroLenString("Enter the title");
-            YOB =  SI.getRangedInt("Enter the 4-digit year of birth", 1000, 2010);
+            YOB =  SI.getRangedInt("Enter the 4-digit year of birth", 1940, 2010);
 
-            Person personRec = new Person(ID, FirstName, LastName, Title, YOB);
+            Person personRec = new Person(FirstName, LastName, Title, YOB);
             folks.add(personRec);
 
             done = SI.getYNConfirm("Are you done?");
