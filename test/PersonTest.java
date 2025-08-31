@@ -20,7 +20,7 @@ class PersonTest
         p6 = new Person("Jane", "Curtain", "Mrs.", 1975);
     }
 
-    /** tests the seed generator after 4 calls, should be 4 */
+    /** tests the seed generator after 6 calls, should be 7 */
     @Test
     void getIDSeed() {
         assertEquals(7, Person.getIDSeed());
