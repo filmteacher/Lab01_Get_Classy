@@ -2,8 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class ProductTest {
-
+class ProductTest
+{
     /** create the class variables for the 3 instances */
     Product p1, p2, p3;
 
